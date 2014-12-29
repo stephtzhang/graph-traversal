@@ -22,6 +22,27 @@ class Graph
 
     add_edge(y, x, true) unless pair_processed
   end
+
+  def breadth_first_search(start_node)
+    discovered = set_false_hash
+    queue = []
+
+    queue.unshift(start_node)
+    discovered[start_node] = true
+
+    while queue.length > 0
+      current_node = queue.pop
+      adjacent_nodes = @edges[current_node]
+    end
+  end
+
+  def set_false_hash
+    false_hash = {}
+    @edges.each do |node, connection|
+      false_hash[node] = false
+    end
+    false_hash
+  end
 end
 
 class EdgeNode
@@ -31,4 +52,4 @@ end
 
 graph_info = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5], [2,7], [5,6]]
 graph = Graph.new(graph_info, false)
-puts graph.edges
+graph.breadth_first_search(1)
