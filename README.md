@@ -1,2 +1,2 @@
-Graph Traversal in JS
-=====================
+traversing graphs and taking names
+==================================
