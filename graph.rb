@@ -34,7 +34,7 @@ class Graph
       current_node = queue.pop
 
       puts current_node
-      # process current_node here
+      # process current_node here (early)
 
       adjacent_nodes = @edges[current_node]
       adjacent_nodes.each do |adjacent_node|
@@ -44,6 +44,7 @@ class Graph
         end
       end
       @discovered[current_node] = true
+      # process current_node here (late)
     end
   end
 
@@ -57,7 +58,7 @@ class Graph
       current_node = stack.shift
 
       puts current_node
-      # process current_node here
+      # process current_node here (early)
 
       adjacent_nodes = @edges[current_node]
       adjacent_nodes.each do |adjacent_node|
@@ -67,6 +68,7 @@ class Graph
         end
       end
       @discovered[current_node] = true
+      # process current_node here (late)
     end
   end
 
@@ -77,7 +79,7 @@ class Graph
 
   def search_all_nodes(node)
     puts node
-    # process node here
+    # process node here (early)
 
     @discovered[node] = true
     adjacent_nodes = @edges[node]
@@ -87,6 +89,7 @@ class Graph
         search_all_nodes(adjacent_node)
       end
     end
+    # process node here (late)
   end
 
   def set_false_hash
@@ -98,10 +101,12 @@ class Graph
   end
 end
 
-graph_info = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5], [2,7], [5,6]]
+graph_info = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5], [2,7], [5,6], [8,9]]
 graph = Graph.new(graph_info, false)
 graph.depth_first_search(1)
 puts ""
 graph.recursive_dfs(1)
 puts ""
 graph.breadth_first_search(1)
+puts ""
+graph.breadth_first_search(8)
