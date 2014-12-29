@@ -98,13 +98,10 @@ class Graph
   end
 end
 
-class EdgeNode
-  def initialize()
-  end
-end
-
 graph_info = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5], [2,7], [5,6]]
 graph = Graph.new(graph_info, false)
 graph.depth_first_search(1)
 puts ""
 graph.recursive_dfs(1)
+puts ""
+graph.breadth_first_search(1)
