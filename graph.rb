@@ -4,6 +4,7 @@ class Graph
   def initialize(graph_info, directed)
     @edges = {}
     @directed = directed
+    @discovered = set_false_hash
     make_edges(graph_info)
   end
 
@@ -24,7 +25,7 @@ class Graph
   end
 
   def breadth_first_search(start_node)
-    discovered = set_false_hash
+    @discovered = set_false_hash
     queue = []
 
     queue.unshift(start_node)
@@ -37,17 +38,17 @@ class Graph
 
       adjacent_nodes = @edges[current_node]
       adjacent_nodes.each do |adjacent_node|
-        unless discovered[adjacent_node]
-          discovered[adjacent_node] = true
+        unless @discovered[adjacent_node]
+          @discovered[adjacent_node] = true
           queue.unshift(adjacent_node)
         end
       end
-      discovered[current_node] = true
+      @discovered[current_node] = true
     end
   end
 
   def depth_first_search(start_node)
-    discovered = set_false_hash
+    @discovered = set_false_hash
     stack = []
 
     stack.unshift(start_node)
@@ -60,12 +61,12 @@ class Graph
 
       adjacent_nodes = @edges[current_node]
       adjacent_nodes.each do |adjacent_node|
-        unless discovered[adjacent_node]
-          discovered[adjacent_node] = true
+        unless @discovered[adjacent_node]
+          @discovered[adjacent_node] = true
           stack.unshift(adjacent_node)
         end
       end
-      discovered[current_node] = true
+      @discovered[current_node] = true
     end
   end
 
@@ -86,3 +87,5 @@ end
 graph_info = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5], [2,7], [5,6]]
 graph = Graph.new(graph_info, false)
 graph.depth_first_search(1)
+puts ""
+graph.recursive_dfs(1)
