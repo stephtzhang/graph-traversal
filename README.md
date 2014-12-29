@@ -1,2 +1,2 @@
-graph-algorithm-viz
-===================
+Graph Traversal in JS
+=====================
