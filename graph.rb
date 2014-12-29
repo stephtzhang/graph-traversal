@@ -28,11 +28,21 @@ class Graph
     queue = []
 
     queue.unshift(start_node)
-    discovered[start_node] = true
 
     while queue.length > 0
       current_node = queue.pop
+
+      puts current_node
+      # process current_node here
+
       adjacent_nodes = @edges[current_node]
+      adjacent_nodes.each do |adjacent_node|
+        unless discovered[adjacent_node]
+          discovered[adjacent_node] = true
+          queue.unshift(adjacent_node)
+        end
+      end
+      discovered[current_node] = true
     end
   end
 
