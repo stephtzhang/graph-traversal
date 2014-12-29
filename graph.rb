@@ -8,7 +8,7 @@ class Graph
   end
 
   def make_edges(graph_info)
-    graph_info.foreach do |connection|
+    graph_info.each do |connection|
       add_edge(connection[0], connection[1], @directed)
     end
   end
