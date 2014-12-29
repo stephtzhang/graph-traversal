@@ -70,6 +70,25 @@ class Graph
     end
   end
 
+  def recursive_dfs(start_node)
+    @discovered = set_false_hash
+    search_all_nodes(start_node)
+  end
+
+  def search_all_nodes(node)
+    puts node
+    # process node here
+
+    @discovered[node] = true
+    adjacent_nodes = @edges[node]
+    adjacent_nodes.each do |adjacent_node|
+      unless @discovered[adjacent_node]
+        @discovered[adjacent_node] = true
+        search_all_nodes(adjacent_node)
+      end
+    end
+  end
+
   def set_false_hash
     false_hash = {}
     @edges.each do |node, connection|
