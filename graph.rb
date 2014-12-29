@@ -48,12 +48,12 @@ class Graph
 
   def depth_first_search(start_node)
     discovered = set_false_hash
-    queue = []
+    stack = []
 
-    queue.unshift(start_node)
+    stack.unshift(start_node)
 
-    while queue.length > 0
-      current_node = queue.shift
+    while stack.length > 0
+      current_node = stack.shift
 
       puts current_node
       # process current_node here
@@ -62,7 +62,7 @@ class Graph
       adjacent_nodes.each do |adjacent_node|
         unless discovered[adjacent_node]
           discovered[adjacent_node] = true
-          queue.unshift(adjacent_node)
+          stack.unshift(adjacent_node)
         end
       end
       discovered[current_node] = true
