@@ -12,7 +12,7 @@ class Graph
   def initialize(graph_info, directed)
     @edges = {}
     @directed = directed
-    @discovered = set_false_hash
+    @discovered = {}
     make_edges(graph_info)
   end
 
@@ -65,7 +65,7 @@ class Graph
   end
 
   def depth_first_search(start_node)
-    @discovered = set_false_hash
+    @discovered = {}
     stack = []
 
     stack.unshift(start_node)
@@ -89,7 +89,7 @@ class Graph
   end
 
   def recursive_dfs(start_node)
-    @discovered = set_false_hash
+    @discovered = {}
     search_all_nodes(start_node)
   end
 
@@ -114,14 +114,6 @@ class Graph
       distance_hash[node] = MAX_INT
     end
     distance_hash
-  end
-
-  def set_false_hash
-    false_hash = {}
-    @edges.each do |node, connection|
-      false_hash[node] = false
-    end
-    false_hash
   end
 end
 
