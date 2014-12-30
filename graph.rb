@@ -127,10 +127,10 @@ class Graph
 
   def recursive_dfs(start_node)
     @discovered = {}
-    search_all_nodes(start_node)
+    search_children(start_node)
   end
 
-  def search_all_nodes(node)
+  def search_children(node)
     puts node
     # process node here (early)
 
@@ -140,7 +140,7 @@ class Graph
       adjacent_node = adjacent_node.connected_node
       unless @discovered[adjacent_node]
         @discovered[adjacent_node] = true
-        search_all_nodes(adjacent_node)
+        search_children(adjacent_node)
       end
     end
     # process node here (late)
