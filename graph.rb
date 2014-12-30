@@ -6,6 +6,15 @@ end
 
 MAX_INT = max_int
 
+class EdgeNode
+  attr_reader :connected_node
+
+  def initialize(connected_node, weight = 0)
+    @connected_node = connected_node
+    @weight = weight
+  end
+end
+
 class Graph
   attr_reader :edges
 
@@ -24,9 +33,9 @@ class Graph
 
   def add_edge(x, y, pair_processed)
     if @edges[x]
-      @edges[x] << y
+      @edges[x] << EdgeNode.new(y, weight)
     else
-      @edges[x] = [y]
+      @edges[x] = [EdgeNode.new(y, weight)]
     end
 
     add_edge(y, x, true) unless pair_processed
