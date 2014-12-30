@@ -59,14 +59,16 @@ class Graph
       adjacent_nodes = @edges[current_node]
       adjacent_nodes.each do |adjacent_node|
         weight = adjacent_node.weight
-        if distance[adjacent_node] > (distance[current_node] + weight)
-          distance[adjacent_node] = distance[current_node] + weight
-          parent[adjacent_node] = current_node
+        if distance[adjacent_node.connected_node] > (distance[current_node] + weight)
+          distance[adjacent_node.connected_node] = distance[current_node] + weight
+          parent[adjacent_node.connected_node] = current_node
         end
       end
 
       dist = MAX_INT
       @edges.each do |node, adjacent_nodes|
+        # add node to tree that has the lowest distance from root
+        # of all discovered nodes that have not already been added to tree
         if !intree[node] && distance[node] < dist
           puts "dist #{node} from root: #{distance[node]}"
           dist = distance[node]
@@ -153,8 +155,9 @@ class Graph
   end
 end
 
-graph_info = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5], [2,7], [5,6], [8,9]]
+graph_info = [[1, 2, 1], [1, 3, 1], [1, 4, 4], [3, 4, 1], [4, 5, 1], [2,7, 1], [5,6, 1], [8,9, 1]]
 graph = Graph.new(graph_info, false)
+# p graph.edges
 # graph.depth_first_search(1)
 # puts ""
 # graph.recursive_dfs(1)
