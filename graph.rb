@@ -41,9 +41,6 @@ class Graph
     add_edge(y, x, weight, true) unless pair_processed
   end
 
-  # TODO: add weight to nodes
-  # and update adjacent_node.weight wording
-  # if necessary
   def dijkstra(start_node)
     intree = {}
     parent = {}
