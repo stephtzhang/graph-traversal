@@ -32,16 +32,43 @@ class Graph
     add_edge(y, x, true) unless pair_processed
   end
 
+  # TODO: add weight to nodes
+  # and update adjacent_node.weight wording
+  # if necessary
   def dijkstra(start_node)
-    @discovered = set_false_hash
+    intree = {}
+    parent = {}
     distance = set_distance_hash
 
     distance[start_node] = 0
+    current_node = start_node
 
+    until(intree[current_node])
+      intree[current_node] = true;
+      puts current_node
+
+      adjacent_nodes = @edges[current_node]
+      adjacent_nodes.each do |adjacent_node|
+        weight = adjacent_node.weight
+        if distance[adjacent_node] > (distance[current_node] + weight)
+          distance[adjacent_node] = distance[current_node] + weight
+          parent[adjacent_node] = current_node
+        end
+      end
+
+      dist = MAX_INT
+      @edges.each do |node, adjacent_nodes|
+        if !intree[node] && distance[node] < dist
+          puts "dist #{node} from root: #{distance[node]}"
+          dist = distance[node]
+          current_node = node
+        end
+      end
+    end
   end
 
   def breadth_first_search(start_node)
-    @discovered = set_false_hash
+    @discovered = {}
     queue = []
 
     queue.unshift(start_node)
@@ -119,10 +146,11 @@ end
 
 graph_info = [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5], [2,7], [5,6], [8,9]]
 graph = Graph.new(graph_info, false)
-graph.depth_first_search(1)
-puts ""
-graph.recursive_dfs(1)
-puts ""
-graph.breadth_first_search(1)
-puts ""
-graph.breadth_first_search(8)
+# graph.depth_first_search(1)
+# puts ""
+# graph.recursive_dfs(1)
+# puts ""
+# graph.breadth_first_search(1)
+# puts ""
+# graph.breadth_first_search(8)
+graph.dijkstra(1)
