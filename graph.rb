@@ -89,6 +89,7 @@ class Graph
 
       adjacent_nodes = @edges[current_node]
       adjacent_nodes.each do |adjacent_node|
+        adjacent_node = adjacent_node.connected_node
         unless @discovered[adjacent_node]
           @discovered[adjacent_node] = true
           queue.unshift(adjacent_node)
@@ -113,6 +114,7 @@ class Graph
 
       adjacent_nodes = @edges[current_node]
       adjacent_nodes.each do |adjacent_node|
+        adjacent_node = adjacent_node.connected_node
         unless @discovered[adjacent_node]
           @discovered[adjacent_node] = true
           stack.unshift(adjacent_node)
@@ -135,6 +137,7 @@ class Graph
     @discovered[node] = true
     adjacent_nodes = @edges[node]
     adjacent_nodes.each do |adjacent_node|
+      adjacent_node = adjacent_node.connected_node
       unless @discovered[adjacent_node]
         @discovered[adjacent_node] = true
         search_all_nodes(adjacent_node)
