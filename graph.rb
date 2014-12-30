@@ -108,6 +108,14 @@ class Graph
     # process node here (late)
   end
 
+  def set_distance_hash
+    distance_hash = {}
+    @edges.each do |node, connection|
+      distance_hash[node] = MAX_INT
+    end
+    distance_hash
+  end
+
   def set_false_hash
     false_hash = {}
     @edges.each do |node, connection|
