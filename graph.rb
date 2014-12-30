@@ -32,6 +32,14 @@ class Graph
     add_edge(y, x, true) unless pair_processed
   end
 
+  def dijkstra(start_node)
+    @discovered = set_false_hash
+    distance = set_distance_hash
+
+    distance[start_node] = 0
+
+  end
+
   def breadth_first_search(start_node)
     @discovered = set_false_hash
     queue = []
