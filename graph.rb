@@ -1,19 +1,4 @@
-def max_int
-  machine_bytes = ['banana'].pack('p').size
-  machine_bits = machine_bytes * 8
-  2**(machine_bits-1)
-end
-
-MAX_INT = max_int
-
-class EdgeNode
-  attr_reader :connected_node, :weight
-
-  def initialize(connected_node, weight = 0)
-    @connected_node = connected_node
-    @weight = weight
-  end
-end
+MAX_INT = ComputerInfo.max_int
 
 class Graph
   attr_reader :edges
@@ -154,13 +139,3 @@ class Graph
     distance_hash
   end
 end
-
-graph_info = [[1, 2, 1], [1, 3, 1], [1, 4, 4], [3, 4, 1], [4, 5, 1], [2, 7, 1], [5, 6, 3], [8, 9, 1], [7, 6, 5]]
-graph = Graph.new(graph_info, false)
-graph.depth_first_search(1)
-puts ""
-graph.recursive_dfs(1)
-puts ""
-graph.breadth_first_search(1)
-puts ""
-graph.dijkstra(1)
