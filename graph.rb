@@ -1,29 +1,12 @@
 MAX_INT = ComputerInfo.max_int
 
 class Graph
-  attr_reader :edges
+  attr_reader :edges, :directed
 
-  def initialize(graph_info, directed)
+  def initialize(directed)
     @edges = {}
     @directed = directed
     @discovered = {}
-    make_edges(graph_info)
-  end
-
-  def make_edges(graph_info)
-    graph_info.each do |connection|
-      add_edge(connection[0], connection[1], connection[2], @directed)
-    end
-  end
-
-  def add_edge(x, y, weight, pair_processed)
-    if @edges[x]
-      @edges[x] << EdgeNode.new(y, weight)
-    else
-      @edges[x] = [EdgeNode.new(y, weight)]
-    end
-
-    add_edge(y, x, weight, true) unless pair_processed
   end
 
   def dijkstra(start_node)
